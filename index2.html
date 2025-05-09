@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Image Preview Box */
+        #image {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 400px;
+            font-size: 1.2rem;
+            color: #333;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.3s ease, color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        /* Image Thumbnails Container */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        .image-gallery figure {
+            margin: 0;
+            position: relative;
+        }
+
+        .image-gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .image-gallery img:hover,
+        .image-gallery img:focus {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .image-gallery figcaption {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Button to Reset */
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #0056b3;
+            outline: none;
+        }
+
+        /* Focus styles for accessibility */
+        [tabindex]:focus {
+            outline: 2px solid #007BFF;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Photo Gallery</h1>
+    
+    <!-- Preview Image Section -->
+    <div id="image" tabindex="0">Hover over or focus on an image below to display here.</div>
+
+    <!-- Thumbnails Section -->
+    <div class="image-gallery">
+        <figure>
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+                 alt="Beautiful forest with tall trees and sunlight filtering through" 
+                 onmouseover="upDate(this)" 
+                 onmouseout="undo()"
+                 onfocus="upDate(this)"
+                 onblur="undo()">
+            <figcaption>Forest Landscape</figcaption>
+        </figure>
+        <figure>
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+                 alt="Snow-covered mountain peak under blue sky" 
+                 onmouseover="upDate(this)" 
+                 onmouseout="undo()"
+                 onfocus="upDate(this)"
+                 onblur="undo()">
+            <figcaption>Mountain View</figcaption>
+        </figure>
+        <figure>
+            <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+                 alt="Sunny beach with turquoise water and white sand" 
+                 onmouseover="upDate(this)" 
+                 onmouseout="undo()"
+                 onfocus="upDate(this)"
+                 onblur="undo()">
+            <figcaption>Tropical Beach</figcaption>
+        </figure>
+        <figure>
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+                 alt="Misty morning in a green valley with mountains in the background" 
+                 onmouseover="upDate(this)" 
+                 onmouseout="undo()"
+                 onfocus="upDate(this)"
+                 onblur="undo()">
+            <figcaption>Misty Valley</figcaption>
+        </figure>
+        <figure>
+            <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+                 alt="Waterfall cascading down rocky cliffs surrounded by lush vegetation" 
+                 onmouseover="upDate(this)" 
+                 onmouseout="undo()"
+                 onfocus="upDate(this)"
+                 onblur="undo()">
+            <figcaption>Waterfall</figcaption>
+        </figure>
+        <figure>
+            <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+                 alt="Field of purple flowers stretching to the horizon under dramatic clouds" 
+                 onmouseover="upDate(this)" 
+                 onmouseout="undo()"
+                 onfocus="upDate(this)"
+                 onblur="undo()">
+            <figcaption>Flower Field</figcaption>
+        </figure>
+    </div>
+
+    <!-- Reset Button -->
+    <button onclick="resetImage()" onfocus="console.log('Reset button focused')">Reset Preview</button>
+
+    <script>
+        // Function to update the image preview
+        function upDate(previewPic) {
+            // Get the image preview div
+            let imageDiv = document.getElementById('image');
+
+            // Set background image and text
+            imageDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+            imageDiv.textContent = previewPic.alt;
+            imageDiv.style.color = "white";
+            imageDiv.style.textShadow = "1px 1px 2px black";
+        }
+
+        // Function to reset the image preview to the default state
+        function undo() {
+            let imageDiv = document.getElementById('image');
+            imageDiv.style.backgroundImage = "url('')";
+            imageDiv.textContent = "Hover over or focus on an image below to display here.";
+            imageDiv.style.color = "#333";
+            imageDiv.style.textShadow = "none";
+        }
+
+        // Function to reset the image preview on button click
+        function resetImage() {
+            undo();
+            console.log("Preview reset by user");
+        }
+
+        // Function to add tabindex attributes to all images
+        function addTabIndex() {
+            const images = document.querySelectorAll('.image-gallery img');
+            console.log(`Adding tabindex to ${images.length} images`);
+            
+            for (let i = 0; i < images.length; i++) {
+                images[i].setAttribute('tabindex', '0');
+                console.log(`Added tabindex to image ${i+1}: ${images[i].alt}`);
+            }
+        }
+
+        // Onload function to initialize the gallery
+        function initGallery() {
+            console.log("Gallery initialized");
+            addTabIndex();
+            
+            // Set focus to the preview area for screen readers
+            document.getElementById('image').focus();
+        }
+
+        // Add event listener for page load
+        window.addEventListener('load', initGallery);
+    </script>
+</body>
+</html>
