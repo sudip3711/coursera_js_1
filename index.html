@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Preview</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Image Preview Box */
+        #image {
+            width: 400px;
+            height: 300px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 1.2rem;
+            color: #333;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.3s ease, color 0.3s ease;
+        }
+
+        /* Image Thumbnails Container */
+        .image-gallery {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .image-gallery img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Button to Reset */
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hover over an image below to preview it</h1>
+    
+    <!-- Preview Image Section -->
+    <div id="image">Hover over an image below to display here.</div>
+
+    <!-- Thumbnails Section -->
+    <div class="image-gallery">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+             alt="Beautiful Forest" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+             alt="Snowy Mountain" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()">
+        <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
+             alt="Sunny Beach" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()">
+    </div>
+
+    <!-- Reset Button -->
+    <button onclick="resetImage()">Reset Preview</button>
+
+    <script>
+        // Function to update the image preview
+        function upDate(previewPic) {
+            // Get the image preview div
+            let imageDiv = document.getElementById('image');
+
+            // Set background image and text
+            imageDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+            imageDiv.innerHTML = previewPic.alt;
+        }
+
+        // Function to reset the image preview to the default state
+        function undo() {
+            let imageDiv = document.getElementById('image');
+            imageDiv.style.backgroundImage = "url('')";
+            imageDiv.innerHTML = "Hover over an image below to display here.";
+        }
+
+        // Function to reset the image preview on button click
+        function resetImage() {
+            let imageDiv = document.getElementById('image');
+            imageDiv.style.backgroundImage = "url('')";
+            imageDiv.innerHTML = "Hover over an image below to display here.";
+        }
+    </script>
+</body>
+</html>
